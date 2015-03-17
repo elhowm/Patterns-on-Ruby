@@ -26,6 +26,6 @@ class Group
   end
 end
 
-@group = Group.new(10)
+group = Group.new(10)
 
-@group.get_some_student.make_some_shit
+group.get_some_student.make_some_shit
