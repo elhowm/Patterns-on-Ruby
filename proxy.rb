@@ -41,7 +41,7 @@ class StudentPR < Student
       p 'Huyak..'
       sleep 2
     end
-    p 'Ta-da! Huge program successfully created'
+    p 'Ta-da! Huge program successfully created!'
     p 'Author Info:'
     p @author_info
   end
@@ -52,7 +52,7 @@ class StudentKS < Student
     p 'Welcome to the little digital board creator'
     sleep 1
     p 'Start working..'
-    sleep(1)
+    sleep 1
     p 'Huyak..'
     sleep 2
     p 'Ta-da! Little digital board successfully created!'
@@ -64,7 +64,7 @@ class StudentKS < Student
     p 'Welcome to the middle digital board creator'
     sleep 1
     p 'Start working..'
-    sleep(1)
+    sleep 1
     2.times do
       p 'Huyak..'
       sleep 2
@@ -78,7 +78,7 @@ class StudentKS < Student
     p 'Welcome to the huge digital board creator'
     sleep 1
     p 'Start working..'
-    sleep(1)
+    sleep 1
     3.times do
       p 'Huyak..'
       sleep 2
