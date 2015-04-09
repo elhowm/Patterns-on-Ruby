@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-# Ruby varsion set
+# Ruby version set
 ruby '2.2.0'
 # Another gems
 gem 'faker'
