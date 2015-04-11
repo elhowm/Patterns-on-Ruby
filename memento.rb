@@ -17,17 +17,17 @@ class Student
   end
 end
 
-p 'Say your name:'
+puts 'Say your name:'
 iam = Student.new(gets.chop)
-p 'Set your marks:'
+puts 'Set your marks:'
 iam.marks = gets.chop
 iam.save_my_ass
-p 'Rewrite your marks:'
+puts 'Rewrite your marks:'
 iam.marks = gets.chop
-p 'Now your marks:'
-p iam.marks
-p 'You are going into the past..'
+puts 'Now your marks:'
+puts iam.marks
+puts 'You are going into the past..'
 sleep 2
 iam.back_into_the_past
-p 'Now your marks is:'
-p iam.marks
+puts 'Now your marks is:'
+puts iam.marks
