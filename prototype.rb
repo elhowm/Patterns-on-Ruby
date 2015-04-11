@@ -8,15 +8,15 @@ class Prototype
   end
 end
 
-p 'Enter prototype name:'
+puts 'Enter prototype name:'
 object_name = gets
 
 prototype = Prototype.new(object_name)
 
-p 'Prototype name is:'
-p prototype.name
+puts 'Prototype name is:'
+puts prototype.name
 
 prototype_clone = prototype.clone
 
-p 'Prototype clone name is:'
-p prototype_clone.name
+puts 'Prototype clone name is:'
+puts prototype_clone.name
