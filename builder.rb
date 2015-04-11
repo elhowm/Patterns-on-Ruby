@@ -8,7 +8,7 @@ class WearBuilder
   attr_accessor :wear
 
   def what_to_wear
-    p "on head: #{@wear.head}; on body: #{@wear.body}; on legs: #{@wear.legs}; on foot: #{@wear.foot}"
+    puts "on head: #{@wear.head}; on body: #{@wear.body}; on legs: #{@wear.legs}; on foot: #{@wear.foot}"
   end
 
   def get_wear
@@ -40,13 +40,13 @@ class Wardrobe
   end
 end
 
-p 'IN WINTER:'
+puts 'IN WINTER:'
 builder = WinterWearBuilder.new
 wardrobe = Wardrobe.new
 wardrobe.set_seaon_builder(builder)
 wardrobe.what_to_wear
 
-p 'IN SUMMER:'
+puts 'IN SUMMER:'
 builder = SummerWearBuilder.new
 wardrobe.set_seaon_builder(builder)
 wardrobe.what_to_wear
