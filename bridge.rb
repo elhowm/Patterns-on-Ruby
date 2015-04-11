@@ -13,43 +13,43 @@ class Student
 end
 
 class StudentPR < Student
-  attr_accessor :programming_knowlage
+  attr_accessor :programming_knowledge
 
   def do_my_work
-    eval @programming_knowlage
+    eval @programming_knowledge
   end
 end
 
 class Teacher
   attr_accessor :subject, :info
 
-  def give_knowlage(student)
+  def give_knowledge(student)
     false
   end
 end
 
 class ProgrammingTeacher < Teacher
-  attr_accessor :programming_knowlage
+  attr_accessor :programming_knowledge
 
   def initialize(info, knowlage)
     @info = info
     @subject = 'Patterns'
-    @programming_knowlage = knowlage
+    @programming_knowledge = knowlage
   end
 
-  def give_knowlage(student)
-    student.programming_knowlage = @programming_knowlage
+  def give_knowledge(student)
+    student.programming_knowledge = @programming_knowledge
   end
 end
 
-p 'Give student info:'
+puts 'Give student info:'
 student = StudentPR.new(gets)
 teacher = ProgrammingTeacher.new('Kondratyuk Evgen', %q|3.times{ puts 'Hello world' }|)
 
-p "Teacher #{teacher.info} teach student #{student.info}..."
-teacher.give_knowlage(student)
+puts "Teacher #{teacher.info} teach student #{student.info}..."
+teacher.give_knowledge(student)
 sleep 2
-p 'Student is traind successfully!'
+puts 'Student is trained successfully!'
 sleep 2
-p 'Student do what he/she studied:'
+puts 'Student do what he/she studied:'
 student.do_my_work
