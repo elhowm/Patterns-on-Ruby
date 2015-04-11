@@ -15,4 +15,4 @@ loop do
   UserController.send(cmd)
 end
 
-p 'bye!'
+puts 'bye!'

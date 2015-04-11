@@ -1,6 +1,6 @@
 class UserController
   def self.find_user
-    p 'Give login of user:'
+    puts 'Give login of user:'
     user = User.find_by_login(gets.chop)
     UserView.user_info user
   end
