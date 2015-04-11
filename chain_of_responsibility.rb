@@ -13,7 +13,7 @@ class Student
       self.make_something
     else
       if @friend.nil?
-        p %q|I and my friends can't do it|
+        puts %q|I and my friends can't do it|
       else
         @friend.make_you_or_your_friend action
       end
@@ -21,8 +21,8 @@ class Student
   end
 
   def make_something
-    p %|Hi, I'm #{name} №#{number}|
-    p %|I'm make #{skill} program|
+    puts %|Hi, I'm #{name} №#{number}|
+    puts %|I'm make #{skill} program|
   end
 end
 
@@ -40,5 +40,5 @@ class Group
 end
 
 PR112 = Group.new('PR112', 21)
-p %q|Tell what you want to student do? ('Ruby', 'C++', 'C#', 'PHP', 'Basic', 'Python', 'Pascal')|
+puts %q|Tell what you want to student do? ('Ruby', 'C++', 'C#', 'PHP', 'Basic', 'Python', 'Pascal')|
 PR112.students.last.make_you_or_your_friend(gets.chop)
