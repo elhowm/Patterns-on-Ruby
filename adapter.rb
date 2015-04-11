@@ -5,16 +5,8 @@ class Dude
 
   def initialize(data)
     @personal_data = {
-      eng: {
-        name: data[:eng][:name],
-        surname: data[:eng][:surname]
-      },
-
-      ukr: {
-        name: data[:ukr][:name],
-        surname: data[:ukr][:surname]
-      },
-
+      eng: { name: data[:eng][:name], surname: data[:eng][:surname] },
+      ukr: { name: data[:ukr][:name], surname: data[:ukr][:surname]},
       phone: data[:phone],
       email: data[:email]
     }
@@ -36,14 +28,14 @@ class Speaker
 
   def english
     change_locale :eng
-    p "Hi, I'm #{get_full_name}"
-    p "You can also get in touch with me by email: #{@dude_info[:email]}, or phone: #{@dude_info[:phone]}"
+    puts "Hi, I'm #{get_full_name}"
+    puts "You can also get in touch with me by email: #{@dude_info[:email]}, or phone: #{@dude_info[:phone]}"
   end
 
   def ukrainian
     change_locale :ukr
-    p "Привіт, я #{get_full_name}"
-    p "Ви можете звязатись зі мною по email: #{@dude_info[:email]}, або за телефоном: #{@dude_info[:phone]}"
+    puts "Привіт, я #{get_full_name}"
+    puts "Ви можете звязатись зі мною по email: #{@dude_info[:email]}, або за телефоном: #{@dude_info[:phone]}"
   end
 
   private
@@ -63,7 +55,7 @@ end
 dude = Dude.new({ukr: {name: 'Ростислав', surname: 'Сафонов'}, eng: {name: 'Rostislav', surname: 'Safonov'}, phone: '09876234', email: 'bla@bla.com'})
 speaker = Speaker.new(dude)
 
-p 'Saying in english:'
+puts 'Saying in english:'
 speaker.english
-p 'Saying in ukrainian:'
+puts 'Saying in ukrainian:'
 speaker.ukrainian
