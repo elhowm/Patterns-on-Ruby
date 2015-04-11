@@ -16,13 +16,11 @@ class AutoFactory < AbstractFactory
   end
 
   def products_list
-    @products.each { |auto| p auto }
-    nil
+    @products.each { |auto| puts auto }
   end
 
   def give_random_product
-    p @products[rand(@products.size)]
-    nil
+    puts @products[rand(@products.size)]
   end
 end
 
@@ -32,13 +30,11 @@ class FlowerFactory < AbstractFactory
   end
 
   def products_list
-    @products.each { |flower| p flower }
-    nil
+    @products.each { |flower| puts flower }
   end
 
   def give_random_product
-    p @products[rand(@products.size)]
-    nil
+    puts @products[rand(@products.size)]
   end
 end
 
@@ -48,24 +44,24 @@ auto_factory = AutoFactory.new
 
 flower_factory = FlowerFactory.new
 
-p 'Abstruct factory methods:'
-p 'Products list:'
-p abstruct_factory.products_list
-p 'Give random product:'
-p abstruct_factory.give_random_product
+puts 'Abstruct factory methods:'
+puts 'Products list:'
+puts abstruct_factory.products_list
+puts 'Give random product:'
+puts abstruct_factory.give_random_product
 
-p '==================================='
+puts '==================================='
 
-p 'Auto factory methods:'
-p 'Products list:'
-p auto_factory.products_list
-p 'Give random product:'
-p auto_factory.give_random_product
+puts 'Auto factory methods:'
+puts 'Products list:'
+puts auto_factory.products_list
+puts 'Give random product:'
+puts auto_factory.give_random_product
 
-p '==================================='
+puts '==================================='
 
-p 'Flower factory methods:'
-p 'Products list:'
-p flower_factory.products_list
-p 'Give random product:'
-p flower_factory.give_random_product
+puts 'Flower factory methods:'
+puts 'Products list:'
+puts flower_factory.products_list
+puts 'Give random product:'
+puts flower_factory.give_random_product
