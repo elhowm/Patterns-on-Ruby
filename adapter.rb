@@ -1,61 +1,72 @@
 #!/home/kris/.rvm/wrappers/ruby-2.2.0/ruby
 
-class Dude
-  attr_accessor :personal_data
+class BinaryStore
+  attr_reader :data
 
-  def initialize(data)
-    @personal_data = {
-      eng: { name: data[:eng][:name], surname: data[:eng][:surname] },
-      ukr: { name: data[:ukr][:name], surname: data[:ukr][:surname]},
-      phone: data[:phone],
-      email: data[:email]
-    }
+  def initialize
+    @data = []
   end
 
-  def english
-    {name: personal_data[:eng][:name], surname: personal_data[:eng][:surname], email: personal_data[:email], phone: personal_data[:phone]}
-  end
-
-  def ukrainian
-    {name: personal_data[:ukr][:name], surname: personal_data[:ukr][:surname], email: personal_data[:email], phone: personal_data[:phone]}
-  end
-end
-
-class Speaker
-  def initialize(dude)
-    @dude = dude
-  end
-
-  def english
-    change_locale :eng
-    puts "Hi, I'm #{get_full_name}"
-    puts "You can also get in touch with me by email: #{@dude_info[:email]}, or phone: #{@dude_info[:phone]}"
-  end
-
-  def ukrainian
-    change_locale :ukr
-    puts "Привіт, я #{get_full_name}"
-    puts "Ви можете звязатись зі мною по email: #{@dude_info[:email]}, або за телефоном: #{@dude_info[:phone]}"
+  def data=(new_data)
+    validate_data(new_data)
+    @data = new_data
   end
 
   private
 
-  def change_locale locale
-    @dude_info = case locale
-                 when :eng then @dude.personal_data[:eng].merge({phone: @dude.personal_data[:phone], email: @dude.personal_data[:email]})
-                 when :ukr then @dude.personal_data[:ukr].merge({phone: @dude.personal_data[:phone], email: @dude.personal_data[:email]})
-                 end
+  def raise_error(key)
+    fail 'wrong data format' if key == :format
   end
 
-  def get_full_name
-    "#{@dude_info[:surname]} #{@dude_info[:name]}"
+  def validate_data
+    fail %q|It is abstract method! You should override it by inheritance.|
   end
 end
 
-dude = Dude.new({ukr: {name: 'Ростислав', surname: 'Сафонов'}, eng: {name: 'Rostislav', surname: 'Safonov'}, phone: '09876234', email: 'bla@bla.com'})
-speaker = Speaker.new(dude)
+class OldBinaryStore < BinaryStore
+  private
 
-puts 'Saying in english:'
-speaker.english
-puts 'Saying in ukrainian:'
-speaker.ukrainian
+  def validate_data(new_data)
+    raise_error(:format) unless new_data.kind_of? Array
+    unless new_data.empty?
+      raise_error(:format) unless new_data.map{ |e| [0, 1].include? e }.reduce(:&)
+    end
+  end
+end
+
+class NewBinaryStore < BinaryStore
+  private
+
+  def boolean?(instance)
+    [TrueClass, FalseClass].include? instance.class
+  end
+
+  def validate_data(new_data)
+    raise_error(:format) unless new_data.kind_of? Array
+    unless new_data.empty?
+      raise_error(:format) unless new_data.map{ |e| boolean? e }.reduce(:&)
+    end
+  end
+end
+
+class Adapter
+  def self.convert_to_new_store(old_store)
+    fail 'store wrong format' unless old_store.kind_of? OldBinaryStore
+    new_store = NewBinaryStore.new
+    new_store.data = old_store.data.map{ |e| !e.zero? }
+    new_store
+  end
+end
+
+class Worker
+  def all_data_is_true?(store)
+    fail 'store wrong format' unless store.kind_of? NewBinaryStore
+    store.data.reduce(:&)
+  end
+end
+
+old_store = OldBinaryStore.new
+old_store.data = [1, 1, 0]
+
+worker = Worker.new
+puts worker.all_data_is_true? Adapter.convert_to_new_store(old_store)
